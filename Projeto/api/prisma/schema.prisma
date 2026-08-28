@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model categoria {
+  id           Int       @id @default(autoincrement())
+  nome         String
+  slug         String    @unique(map: "Categoria_slug_key")
+  criadoEm     DateTime  @default(now())
+  atualizadoEm DateTime
+  produto      produto[]
+}
+
+model itemlistacompra {
+  id               Int            @id @default(autoincrement())
+  listaDeComprasId Int
+  produtoId        Int
+  quantidade       Int            @default(1)
+  criadoEm         DateTime       @default(now())
+  listadecompras   listadecompras @relation(fields: [listaDeComprasId], references: [id], onDelete: Cascade, map: "ItemListaCompra_listaDeComprasId_fkey")
+  produto          produto        @relation(fields: [produtoId], references: [id], onDelete: Cascade, map: "ItemListaCompra_produtoId_fkey")
+
+  @@unique([listaDeComprasId, produtoId], map: "ItemListaCompra_listaDeComprasId_produtoId_key")
+  @@index([produtoId], map: "ItemListaCompra_produtoId_idx")
+}
+
+model listadecompras {
+  id              Int               @id @default(autoincrement())
+  nome            String            @default("Minha lista")
+  usuarioId       Int
+  criadoEm        DateTime          @default(now())
+  atualizadoEm    DateTime
+  itemlistacompra itemlistacompra[]
+  usuario         usuario           @relation(fields: [usuarioId], references: [id], onDelete: Cascade, map: "ListaDeCompras_usuarioId_fkey")
+
+  @@index([usuarioId], map: "ListaDeCompras_usuarioId_fkey")
+}
+
+model mercado {
+  id             Int              @id @default(autoincrement())
+  nome           String
+  slug           String           @unique(map: "Mercado_slug_key")
+  logoUrl        String?
+  ativo          Boolean          @default(true)
+  criadoEm       DateTime         @default(now())
+  atualizadoEm   DateTime
+  produtomercado produtomercado[]
+}
+
+model produto {
+  id              Int               @id @default(autoincrement())
+  nome            String
+  marca           String?
+  descricao       String?
+  quantidade      Decimal?          @db.Decimal(10, 3)
+  unidade         String?
+  imagemUrl       String?
+  categoriaId     Int?
+  criadoEm        DateTime          @default(now())
+  atualizadoEm    DateTime
+  itemlistacompra itemlistacompra[]
+  categoria       categoria?        @relation(fields: [categoriaId], references: [id], map: "Produto_categoriaId_fkey")
+  produtomercado  produtomercado[]
+
+  @@index([categoriaId], map: "Produto_categoriaId_idx")
+  @@index([nome], map: "Produto_nome_idx")
+}
+
+model produtomercado {
+  id             Int       @id @default(autoincrement())
+  mercadoId      Int
+  produtoId      Int
+  preco          Decimal   @db.Decimal(10, 2)
+  precoOriginal  Decimal?  @db.Decimal(10, 2)
+  emPromocao     Boolean   @default(false)
+  inicioPromocao DateTime?
+  fimPromocao    DateTime?
+  disponivel     Boolean   @default(true)
+  atualizadoEm   DateTime
+  mercado        mercado   @relation(fields: [mercadoId], references: [id], onDelete: Cascade, map: "ProdutoMercado_mercadoId_fkey")
+  produto        produto   @relation(fields: [produtoId], references: [id], onDelete: Cascade, map: "ProdutoMercado_produtoId_fkey")
+
+  @@unique([mercadoId, produtoId], map: "ProdutoMercado_mercadoId_produtoId_key")
+  @@index([mercadoId], map: "ProdutoMercado_mercadoId_idx")
+  @@index([produtoId], map: "ProdutoMercado_produtoId_idx")
+}
+
+model usuario {
+  id             Int              @id @default(autoincrement())
+  nome           String
+  email          String           @unique(map: "Usuario_email_key")
+  senhaHash      String?
+  firebaseUid    String?          @unique(map: "Usuario_firebaseUid_key")
+  provedor       usuario_provedor @default(LOCAL)
+  criadoEm       DateTime         @default(now())
+  atualizadoEm   DateTime
+  listadecompras listadecompras[]
+}
+
+enum usuario_provedor {
+  LOCAL
+  GOOGLE
+}
