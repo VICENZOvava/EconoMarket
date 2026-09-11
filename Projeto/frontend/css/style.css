@@ -5,11 +5,11 @@
   --ink-soft: #2b2b30;
   --mute: #8b847a;
   --line: #dad2bf;
-  --ghost: #c7c749d0; /* faded "big results" gray */
-  --orange-1: #2bd91f;
-  --orange-2: #38e82b;
-  --orange-3: #4ef55c;
-  --orange-4: #8afd97;
+  --ghost: #ffc400d0; /* faded "big results" gray */
+  --orange-1: #d9a11f;
+  --orange-2: #e8df2b;
+  --orange-3: #f5c04e;
+  --orange-4: #fde28a;
 }
 
 * {
@@ -164,8 +164,8 @@ body {
 
 /* Big results faded back text */
 .big-results-wrap {
-  width: 100%;
-  margin-top: -290px;
+  width: 90%;
+  margin-top: -320px;
   display: flex;
   justify-content: center;
   z-index: 1;
@@ -199,6 +199,7 @@ body {
   height: 620px;
   z-index: 3;
   pointer-events: none;
+  
 }
 .cards-row > * {
   pointer-events: auto;
@@ -215,11 +216,7 @@ body {
     var(--orange-3) 70%,
     var(--orange-4) 100%
   );
-  box-shadow: 0 30px 50px -16px rgba(20, 180, 52, 0.5),
-    0 14px 26px -8px rgba(92, 140, 10, 0.32),
-    0 5px 10px -2px rgba(45, 80, 0, 0.2),
-    inset 0 2px 0 rgba(226, 255, 180, 0.45),
-    inset 0 -4px 8px rgba(0, 120, 68, 0.4);
+  
   cursor: pointer;
   will-change: transform;
   transition: box-shadow 0.5s cubic-bezier(0.6, 0, 0.2, 1);
@@ -245,16 +242,17 @@ body {
   object-fit: cover;
   object-position: center top;
   display: block;
+  
 }
 .card:hover {
-  box-shadow: 0 44px 70px -20px rgba(140, 180, 20, 0.6),
-    0 22px 38px -10px rgba(88, 140, 10, 0.38),
-    0 8px 14px -3px rgba(65, 80, 0, 0.22),
-    inset 0 2px 0 rgba(241, 255, 180, 0.5),
-    inset 0 -4px 8px rgba(78, 120, 0, 0.4);
+  box-shadow: 0 44px 70px -20px rgb(255, 204, 0),
+    0 22px 38px -10px rgb(255, 236, 142),
+    0 8px 14px -3px rgb(255, 248, 115),
+    inset 0 2px 0 rgb(241, 255, 180),
+    inset 0 -4px 8px rgba(255, 247, 136, 0.4);
 }
 
-/* Card sizing/positioning */
+
 .card-1 {
   width: 250px;
   height: 310px;
@@ -693,5 +691,290 @@ body {
     grid-template-columns: 1fr 1fr;
     padding: 40px 24px;
     gap: 24px;
+  }
+}
+
+/* ============================================================
+   COMPARADOR ECONOMARKET
+   ============================================================ */
+
+.comparison-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 40px 100px;
+  position: relative;
+  z-index: 5;
+}
+
+.comparison-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.comparison-head h2 {
+  max-width: 650px;
+  font-size: clamp(34px, 4.4vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.comparison-head h2 em {
+  font-style: italic;
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    var(--orange-1),
+    var(--orange-3)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.comparison-head p {
+  max-width: 320px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* Caixa principal */
+
+.comparison-box {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow:
+    0 24px 50px -25px rgba(40, 30, 10, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Formulário */
+
+.comparison-form {
+  display: grid;
+  grid-template-columns: 1fr 180px auto;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 35px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.input-group input {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffdf8;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: var(--orange-1);
+  box-shadow: 0 0 0 3px rgba(217, 161, 31, 0.12);
+}
+
+/* Botão */
+
+.comparison-btn {
+  height: 50px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 12px;
+  background: var(--ink);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.comparison-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Lista */
+
+.shopping-list {
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
+}
+
+.list-header {
+  display: grid;
+  grid-template-columns: 1fr 180px 100px;
+  padding: 0 16px 12px;
+  color: var(--mute);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ============================================================
+   RESULTADO
+   ============================================================ */
+
+.comparison-result {
+  margin-top: 24px;
+  padding: 30px;
+  border-radius: 28px;
+  background: var(--ink);
+  color: #f4edde;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  box-shadow:
+    0 30px 60px -30px rgba(20, 8, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.result-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.result-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    var(--orange-1),
+    var(--orange-3)
+  );
+  font-size: 25px;
+}
+
+.result-title small {
+  display: block;
+  color: var(--mute);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 5px;
+}
+
+.result-title h3 {
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.result-values {
+  display: flex;
+  gap: 40px;
+}
+
+.result-card {
+  min-width: 150px;
+}
+
+.result-card span {
+  display: block;
+  color: var(--mute);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.result-card strong {
+  font-size: 27px;
+  letter-spacing: -0.03em;
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+  .comparison-section {
+    padding: 60px 20px 80px;
+  }
+
+  .comparison-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comparison-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comparison-btn {
+    grid-column: 1 / -1;
+  }
+
+  .comparison-result {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .result-values {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .comparison-box {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .comparison-form {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-btn {
+    grid-column: auto;
+  }
+
+  .result-values {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .list-header {
+    grid-template-columns: 1fr 80px 60px;
+    font-size: 9px;
+  }
+
+  .comparison-result {
+    padding: 24px;
+    border-radius: 20px;
   }
 }

@@ -23,7 +23,7 @@ loginForm.addEventListener("submit", async (event) => {
         mensagem.textContent = "Login realizado com sucesso!";
 
         setTimeout(() => {
-            window.location.href = "index.html";
+            window.location.href = "main.html";
         }, 500);
 
     } catch (error) {

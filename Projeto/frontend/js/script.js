@@ -299,3 +299,85 @@ document
       ease: "elastic.out(1, 0.6)"
     });
   });
+
+
+  // ============================================================
+// LISTA DE PRODUTOS - ECONOMARKET
+// ============================================================
+
+const btnAdicionarProduto = document.querySelector("#btnAdicionarProduto");
+const campoProduto = document.querySelector("#produto");
+const campoQuantidade = document.querySelector("#quantidade");
+const listaProdutos = document.querySelector("#listaProdutos");
+
+let produtos = [];
+
+btnAdicionarProduto.addEventListener("click", () => {
+
+  const nome = campoProduto.value.trim();
+  const quantidade = Number(campoQuantidade.value);
+
+  // Verifica se o produto foi preenchido
+  if (nome === "") {
+    alert("Digite o nome do produto.");
+    return;
+  }
+
+  // Verifica a quantidade
+  if (quantidade <= 0 || isNaN(quantidade)) {
+    alert("Digite uma quantidade válida.");
+    return;
+  }
+
+  // Cria o produto
+  const produto = {
+    id: Date.now(),
+    nome: nome,
+    quantidade: quantidade
+  };
+
+  // Adiciona à lista
+  produtos.push(produto);
+
+  // Atualiza a tela
+  mostrarProdutos();
+
+  // Limpa os campos
+  campoProduto.value = "";
+  campoQuantidade.value = 1;
+
+  campoProduto.focus();
+});
+
+function mostrarProdutos() {
+
+  listaProdutos.innerHTML = "";
+
+  produtos.forEach((produto) => {
+
+    const item = document.createElement("div");
+
+    item.classList.add("produto-item");
+
+    item.innerHTML = `
+      <span>${produto.nome}</span>
+
+      <span>${produto.quantidade}</span>
+
+      <button
+        class="btn-remover"
+        onclick="removerProduto(${produto.id})">
+        Remover
+      </button>
+    `;
+
+    listaProdutos.appendChild(item);
+  });
+}
+
+function removerProduto(id) {
+
+  produtos = produtos.filter((produto) => produto.id !== id);
+
+  mostrarProdutos();
+}
