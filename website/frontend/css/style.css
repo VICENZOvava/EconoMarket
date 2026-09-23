@@ -11,6 +11,11 @@
   --orange-3: #f5c04e;
   --orange-4: #fde28a;
 }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 * {
   margin: 0;
