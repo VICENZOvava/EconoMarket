@@ -31,6 +31,7 @@ function autenticar(req, res, next) {
     };
 
     next();
+
   } catch (error) {
     console.error("Erro ao autenticar usuário:", error);
 

@@ -54,27 +54,54 @@ async function criarUsuario(dados) {
 }
 
 async function atualizarUsuario(id, dados) {
+
   return await prisma.usuario.update({
+
     where: {
       id: Number(id)
     },
+
     data: {
+
       nome: dados.nome,
+
       email: dados.email,
-      senhaHash: dados.senhaHash || null,
-      firebaseUid: dados.firebaseUid || null,
-      provedor: dados.provedor,
+
+      ...(dados.senhaHash !== undefined
+        ? {
+            senhaHash: dados.senhaHash
+          }
+        : {}),
+
+      ...(dados.firebaseUid !== undefined
+        ? {
+            firebaseUid: dados.firebaseUid
+          }
+        : {}),
+
+      ...(dados.provedor !== undefined
+        ? {
+            provedor: dados.provedor
+          }
+        : {}),
+
       atualizadoEm: new Date()
+
     },
+
     select: {
+
       id: true,
       nome: true,
       email: true,
       provedor: true,
       criadoEm: true,
       atualizadoEm: true
+
     }
+
   });
+
 }
 
 async function deletarUsuario(id) {
