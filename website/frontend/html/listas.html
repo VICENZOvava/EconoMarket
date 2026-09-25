@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>EconoMarket - Lista de Compras</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..900;1,9..40,400..900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/listas.css"
+  >
+
+</head>
+
+
+<body class="listas-body">
+
+  <div class="grain"></div>
+
+
+  <nav class="nav page-nav">
+
+    <a
+      class="logo"
+      href="main.html"
+    >
+      <span class="logo-dot"></span>
+      EconoMarket
+    </a>
+
+
+    <div class="page-actions">
+
+      <a
+        class="page-link active"
+        href="listas.html"
+      >
+        Lista de compras
+      </a>
+
+
+      <a
+        class="page-link"
+        href="perfil.html"
+      >
+        Perfil
+      </a>
+
+
+      <button
+        class="nav-cta"
+        id="btnLogout"
+        type="button"
+      >
+        Sair
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <main class="lists-page">
+
+
+    <section class="profile-header lists-header">
+
+      <div>
+
+        <div class="eyebrow">
+          Organize suas compras
+        </div>
+
+        <h1>
+          Minha <em>lista.</em>
+        </h1>
+
+        <p>
+          Crie listas e adicione os produtos
+          que você deseja comprar.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="lists-layout">
+
+
+      <aside class="lists-sidebar">
+
+        <div class="sidebar-title">
+
+          <span>
+            Minhas listas
+          </span>
+
+          <button
+            id="btnNovaLista"
+            class="small-btn"
+            type="button"
+          >
+            + Nova
+          </button>
+
+        </div>
+
+
+        <div
+          id="listasContainer"
+          class="lists-container"
+        ></div>
+
+      </aside>
+
+
+      <section class="list-detail profile-card">
+
+
+        <div class="list-detail-head">
+
+          <div>
+
+            <div class="eyebrow">
+              Lista selecionada
+            </div>
+
+            <h2 id="nomeListaSelecionada">
+              Selecione uma lista
+            </h2>
+
+          </div>
+
+
+          <button
+            id="btnExcluirLista"
+            class="danger-btn"
+            type="button"
+            hidden
+          >
+            Excluir lista
+          </button>
+
+        </div>
+
+
+        <div
+          id="addItemArea"
+          class="add-item-area"
+          hidden
+        >
+
+          <div class="input-group">
+
+            <label for="produtoId">
+              Produto
+            </label>
+
+            <select id="produtoId"></select>
+
+          </div>
+
+
+          <div class="input-group quantity-input">
+
+            <label for="quantidade">
+              Quantidade
+            </label>
+
+            <input
+              id="quantidade"
+              type="number"
+              min="1"
+              value="1"
+            >
+
+          </div>
+
+
+          <button
+            id="btnAdicionarItem"
+            class="comparison-btn"
+            type="button"
+          >
+            Adicionar
+          </button>
+
+        </div>
+
+
+        <div
+          id="itensContainer"
+          class="items-container"
+        >
+
+          <p class="empty-message">
+            Crie ou selecione uma lista para começar.
+          </p>
+
+        </div>
+
+
+        <p
+          class="form-message"
+          id="mensagem"
+        ></p>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <script src="../js/auth.js"></script>
+
+  <script src="../js/api.js"></script>
+
+  <script src="../js/listas.js"></script>
+
+</body>
+
+</html>

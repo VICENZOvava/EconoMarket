@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EconoMarket - Comparar Preços</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body>
+
+<div class="grain"></div>
+
+<!-- ==================== CABEÇALHO ==================== -->
+
+<header class="main-header">
+
+    <div class="main-header-logo">
+        <a href="main.html">
+            EconoMarket
+        </a>
+    </div>
+
+    <nav class="main-header-actions">
+
+        <a class="nav-cta" href="perfil.html">
+            Perfil
+
+            <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path>
+            </svg>
+        </a>
+
+        <a class="nav-cta" href="index.html">
+            Logout
+
+            <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M10 17l5-5-5-5"></path>
+                <path d="M15 12H3"></path>
+                <path d="M21 3v18"></path>
+            </svg>
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
+
+<main class="comparison-page">
+
+    <!-- ==================== INTRODUÇÃO ==================== -->
+
+    <section class="comparison-intro">
+
+        <span class="eyebrow">
+            Comparador de preços
+        </span>
+
+        <h1>
+            Comparar
+            <em>Preços</em>
+        </h1>
+
+        <p>
+            Monte sua lista de compras e descubra em qual mercado
+            você encontra os melhores preços.
+        </p>
+
+    </section>
+
+
+    <!-- ==================== ADICIONAR PRODUTOS ==================== -->
+
+    <section class="comparison-builder">
+
+        <div class="section-title">
+
+            <span class="section-number">
+                01
+            </span>
+
+            <div>
+                <h2>
+                    Monte sua lista
+                </h2>
+
+                <p>
+                    Adicione os produtos que você pretende comprar.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="product-form">
+
+            <div class="form-field product-field">
+
+                <label for="produto">
+                    Produto
+                </label>
+
+                <input
+                    type="text"
+                    id="produto"
+                    list="produtosDisponiveis"
+                    placeholder="Ex: Arroz 5kg"
+                    autocomplete="off"
+                >
+
+                <datalist id="produtosDisponiveis">
+
+                    <option value="Arroz 5kg"></option>
+                    <option value="Feijão 1kg"></option>
+                    <option value="Leite 1L"></option>
+                    <option value="Café 500g"></option>
+                    <option value="Açúcar 1kg"></option>
+                    <option value="Óleo 900ml"></option>
+
+                </datalist>
+
+            </div>
+
+
+            <div class="form-field quantity-field">
+
+                <label for="quantidade">
+                    Quantidade
+                </label>
+
+                <input
+                    type="number"
+                    id="quantidade"
+                    value="1"
+                    min="1"
+                    step="1"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                id="btnAdicionarProduto"
+                class="add-product-btn"
+            >
+                Adicionar produto
+            </button>
+
+        </div>
+
+
+        <!-- ==================== LISTA DE COMPRAS ==================== -->
+
+        <div class="shopping-list">
+
+            <div class="shopping-list-title">
+
+                <h3>
+                    Sua lista
+                </h3>
+
+                <span id="contadorProdutos">
+                    0 produtos
+                </span>
+
+            </div>
+
+
+            <div class="shopping-list-table">
+
+                <div class="shopping-list-head">
+
+                    <span>
+                        Produto
+                    </span>
+
+                    <span>
+                        Quantidade
+                    </span>
+
+                    <span>
+                        Ação
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="listaProdutos"
+                    class="shopping-list-body"
+                >
+
+                    <div class="empty-list">
+
+                        <strong>
+                            Sua lista está vazia
+                        </strong>
+
+                        <span>
+                            Adicione um produto acima para começar.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== RESULTADO PRINCIPAL ==================== -->
+
+    <section class="comparison-result">
+
+        <div class="section-title">
+
+            <span class="section-number">
+                02
+            </span>
+
+            <div>
+                <h2>
+                    Melhor opção
+                </h2>
+
+                <p>
+                    Veja qual mercado possui o menor total para sua lista.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="best-market-card">
+
+            <div class="best-market-main">
+
+                <span class="best-market-label">
+                    MAIS ECONÔMICO
+                </span>
+
+                <h3 id="mercadoMaisBarato">
+                    Adicione produtos
+                </h3>
+
+                <p>
+                    O mercado com o menor valor total da sua compra.
+                </p>
+
+            </div>
+
+
+            <div class="best-market-values">
+
+                <div class="summary-value">
+
+                    <span>
+                        Total da compra
+                    </span>
+
+                    <strong id="totalCompra">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-value">
+
+                    <span>
+                        Você economiza
+                    </span>
+
+                    <strong id="economia">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== TOTAL POR MERCADO ==================== -->
+
+    <section class="market-totals">
+
+        <div class="section-title">
+
+            <span class="section-number">
+                03
+            </span>
+
+            <div>
+                <h2>
+                    Total por supermercado
+                </h2>
+
+                <p>
+                    Compare quanto sua lista custaria em cada estabelecimento.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="market-grid">
+
+            <!-- ASSAÍ -->
+
+            <article
+                class="market-card"
+                data-market="assai"
+            >
+
+                <div class="market-card-top">
+
+                    <span class="market-name">
+                        Assaí
+                    </span>
+
+                    <span
+                        class="market-position"
+                        id="positionAssai"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+                <strong
+                    class="market-total"
+                    id="totalAssai"
+                >
+                    R$ 0,00
+                </strong>
+
+                <div class="market-bar">
+
+                    <span
+                        id="barAssai"
+                        class="market-bar-fill"
+                    ></span>
+
+                </div>
+
+            </article>
+
+
+            <!-- ATACADÃO -->
+
+            <article
+                class="market-card"
+                data-market="atacadao"
+            >
+
+                <div class="market-card-top">
+
+                    <span class="market-name">
+                        Atacadão
+                    </span>
+
+                    <span
+                        class="market-position"
+                        id="positionAtacadao"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+                <strong
+                    class="market-total"
+                    id="totalAtacadao"
+                >
+                    R$ 0,00
+                </strong>
+
+                <div class="market-bar">
+
+                    <span
+                        id="barAtacadao"
+                        class="market-bar-fill"
+                    ></span>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARREFOUR -->
+
+            <article
+                class="market-card"
+                data-market="carrefour"
+            >
+
+                <div class="market-card-top">
+
+                    <span class="market-name">
+                        Carrefour
+                    </span>
+
+                    <span
+                        class="market-position"
+                        id="positionCarrefour"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+                <strong
+                    class="market-total"
+                    id="totalCarrefour"
+                >
+                    R$ 0,00
+                </strong>
+
+                <div class="market-bar">
+
+                    <span
+                        id="barCarrefour"
+                        class="market-bar-fill"
+                    ></span>
+
+                </div>
+
+            </article>
+
+
+            <!-- EXTRA -->
+
+            <article
+                class="market-card"
+                data-market="extra"
+            >
+
+                <div class="market-card-top">
+
+                    <span class="market-name">
+                        Extra
+                    </span>
+
+                    <span
+                        class="market-position"
+                        id="positionExtra"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+                <strong
+                    class="market-total"
+                    id="totalExtra"
+                >
+                    R$ 0,00
+                </strong>
+
+                <div class="market-bar">
+
+                    <span
+                        id="barExtra"
+                        class="market-bar-fill"
+                    ></span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PÃO DE AÇÚCAR -->
+
+            <article
+                class="market-card"
+                data-market="pao"
+            >
+
+                <div class="market-card-top">
+
+                    <span class="market-name">
+                        Pão de Açúcar
+                    </span>
+
+                    <span
+                        class="market-position"
+                        id="positionPao"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+                <strong
+                    class="market-total"
+                    id="totalPao"
+                >
+                    R$ 0,00
+                </strong>
+
+                <div class="market-bar">
+
+                    <span
+                        id="barPao"
+                        class="market-bar-fill"
+                    ></span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== COMPARAÇÃO POR PRODUTO ==================== -->
+
+    <section class="product-comparison">
+
+        <div class="section-title">
+
+            <span class="section-number">
+                04
+            </span>
+
+            <div>
+                <h2>
+                    Preços por produto
+                </h2>
+
+                <p>
+                    Veja onde cada item da sua lista está mais barato.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="product-comparison-table">
+
+            <!-- CABEÇALHO DA TABELA -->
+
+            <div class="product-table-head">
+
+                <span>
+                    Produto
+                </span>
+
+                <span>
+                    Assaí
+                </span>
+
+                <span>
+                    Atacadão
+                </span>
+
+                <span>
+                    Carrefour
+                </span>
+
+                <span>
+                    Extra
+                </span>
+
+                <span>
+                    Pão de Açúcar
+                </span>
+
+            </div>
+
+
+            <!-- PRODUTOS SERÃO INSERIDOS AQUI -->
+
+            <div
+                id="comparacaoProdutos"
+                class="product-table-body"
+            >
+
+                <div class="empty-comparison">
+
+                    <strong>
+                        Nenhum produto para comparar
+                    </strong>
+
+                    <span>
+                        Adicione produtos à sua lista para visualizar os preços.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script type="module" src="../js/main.js"></script>
+
+
+</body>
+
+</html>
