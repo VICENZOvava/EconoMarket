@@ -5,12 +5,15 @@
   --ink-soft: #2b2b30;
   --mute: #8b847a;
   --line: #dad2bf;
+
   --ghost: #ffc400d0;
+
   --orange-1: #d9a11f;
   --orange-2: #e8df2b;
   --orange-3: #f5c04e;
   --orange-4: #fde28a;
 }
+
 
 /* ============================================================
    RESET
@@ -38,8 +41,10 @@ body {
     #f2ead6 60%,
     #e9dec3 100%
   );
+
   min-height: 100vh;
 }
+
 
 /* ============================================================
    GRAIN
@@ -50,10 +55,13 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 100;
+
   opacity: 0.06;
   mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
+
 
 /* ============================================================
    COMPARADOR ECONOMARKET
@@ -62,21 +70,32 @@ body {
 .comparison-section {
   max-width: 1280px;
   margin: 0 auto;
+
   padding: 80px 40px 100px;
+
   position: relative;
   z-index: 5;
 }
+
+
+/* ============================================================
+   CABEÇALHO
+   ============================================================ */
 
 .comparison-head {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
   gap: 40px;
   margin-bottom: 50px;
+
+  position: relative;
 }
 
 .comparison-head h2 {
   max-width: 650px;
+
   font-size: clamp(34px, 4.4vw, 64px);
   line-height: 1;
   letter-spacing: -0.03em;
@@ -85,22 +104,28 @@ body {
 .comparison-head h2 em {
   font-style: italic;
   font-weight: 800;
+
   background: linear-gradient(
     135deg,
     var(--orange-1),
     var(--orange-3)
   );
+
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 }
 
 .comparison-head p {
   max-width: 320px;
+
   font-size: 15px;
   line-height: 1.55;
+
   color: var(--ink-soft);
 }
+
 
 /* ============================================================
    EYEBROW
@@ -110,45 +135,76 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+
   font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
+
   color: var(--mute);
   font-weight: 500;
+
   margin-bottom: 16px;
 }
 
 .eyebrow::before {
   content: "";
+
   width: 6px;
   height: 6px;
+
   border-radius: 50%;
+
   background: var(--orange-1);
-  box-shadow: 0 0 0 3px rgba(217, 53, 31, 0.2);
+
+  box-shadow:
+    0 0 0 3px rgba(217, 161, 31, 0.2);
 }
 
+
 /* ============================================================
-   BOTÃO LOGOUT
+   BOTÕES DE NAVEGAÇÃO
+   PERFIL + LOGOUT
    ============================================================ */
 
-.nav-cta {
+.nav-actions {
   position: absolute;
-  top: 80px;
-  right: 40px;
 
+  top: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  z-index: 10;
+}
+
+.nav-cta {
   background: var(--ink);
   color: #fafaf7;
+
   border: none;
+
   padding: 12px 22px;
+
   border-radius: 999px;
+
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
+
   cursor: pointer;
+
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+
   gap: 8px;
+
   text-decoration: none;
+
+  white-space: nowrap;
 
   box-shadow:
     0 12px 20px -8px rgba(0, 0, 0, 0.4),
@@ -156,12 +212,21 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     inset 0 -2px 4px rgba(0, 0, 0, 0.4);
 
-  transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .nav-cta:hover {
   transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 25px -10px rgba(0, 0, 0, 0.45),
+    0 6px 10px -4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4);
 }
+
 
 /* ============================================================
    CAIXA PRINCIPAL
@@ -169,13 +234,17 @@ body {
 
 .comparison-box {
   background: rgba(255, 255, 255, 0.55);
+
   border: 1px solid var(--line);
   border-radius: 28px;
+
   padding: 30px;
+
   box-shadow:
     0 24px 50px -25px rgba(40, 30, 10, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
+
 
 /* ============================================================
    FORMULÁRIO
@@ -183,44 +252,61 @@ body {
 
 .comparison-form {
   display: grid;
+
   grid-template-columns: 1fr 180px auto;
+
   align-items: end;
+
   gap: 16px;
+
   margin-bottom: 35px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
 }
 
 .input-group label {
   font-size: 11px;
+
   font-weight: 700;
+
   text-transform: uppercase;
   letter-spacing: 0.12em;
+
   color: var(--mute);
 }
 
 .input-group input {
   width: 100%;
   height: 50px;
+
   padding: 0 16px;
+
   border: 1px solid var(--line);
   border-radius: 12px;
+
   background: #fffdf8;
   color: var(--ink);
+
   font-family: inherit;
   font-size: 14px;
+
   outline: none;
+
   transition: 0.3s ease;
 }
 
 .input-group input:focus {
   border-color: var(--orange-1);
-  box-shadow: 0 0 0 3px rgba(217, 161, 31, 0.12);
+
+  box-shadow:
+    0 0 0 3px rgba(217, 161, 31, 0.12);
 }
+
 
 /* ============================================================
    BOTÃO ADICIONAR
@@ -228,15 +314,21 @@ body {
 
 .comparison-btn {
   height: 50px;
+
   padding: 0 24px;
+
   border: none;
   border-radius: 12px;
+
   background: var(--ink);
   color: #fff;
+
   font-family: inherit;
   font-size: 13px;
   font-weight: 700;
+
   cursor: pointer;
+
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -244,8 +336,11 @@ body {
 
 .comparison-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.5);
+
+  box-shadow:
+    0 12px 20px -10px rgba(0, 0, 0, 0.5);
 }
+
 
 /* ============================================================
    LISTA DE PRODUTOS
@@ -253,19 +348,26 @@ body {
 
 .shopping-list {
   border-top: 1px solid var(--line);
+
   padding-top: 25px;
 }
 
 .list-header {
   display: grid;
+
   grid-template-columns: 1fr 180px 100px;
+
   padding: 0 16px 12px;
+
   color: var(--mute);
+
   font-size: 10px;
   font-weight: 700;
+
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
+
 
 /* ============================================================
    RESULTADO
@@ -273,14 +375,21 @@ body {
 
 .comparison-result {
   margin-top: 24px;
+
   padding: 30px;
+
   border-radius: 28px;
+
   background: var(--ink);
   color: #f4edde;
+
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   gap: 30px;
+
   box-shadow:
     0 30px 60px -30px rgba(20, 8, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -289,40 +398,51 @@ body {
 .result-title {
   display: flex;
   align-items: center;
+
   gap: 18px;
 }
 
 .result-icon {
   width: 54px;
   height: 54px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border-radius: 16px;
+
   background: linear-gradient(
     135deg,
     var(--orange-1),
     var(--orange-3)
   );
+
   font-size: 25px;
 }
 
 .result-title small {
   display: block;
+
   color: var(--mute);
+
   font-size: 10px;
+
   text-transform: uppercase;
   letter-spacing: 0.15em;
+
   margin-bottom: 5px;
 }
 
 .result-title h3 {
   font-size: 24px;
+
   letter-spacing: -0.02em;
 }
 
 .result-values {
   display: flex;
+
   gap: 40px;
 }
 
@@ -332,17 +452,23 @@ body {
 
 .result-card span {
   display: block;
+
   color: var(--mute);
+
   font-size: 11px;
+
   text-transform: uppercase;
   letter-spacing: 0.1em;
+
   margin-bottom: 8px;
 }
 
 .result-card strong {
   font-size: 27px;
+
   letter-spacing: -0.03em;
 }
+
 
 /* ============================================================
    RESPONSIVO
@@ -356,7 +482,16 @@ body {
 
   .comparison-head {
     flex-direction: column;
+
     align-items: flex-start;
+
+    padding-top: 65px;
+  }
+
+  /* Botões continuam no canto superior direito */
+  .nav-actions {
+    top: 0;
+    right: 0;
   }
 
   .comparison-form {
@@ -369,19 +504,47 @@ body {
 
   .comparison-result {
     flex-direction: column;
+
     align-items: flex-start;
   }
 
   .result-values {
     width: 100%;
+
     justify-content: space-between;
   }
 }
 
+
+/* ============================================================
+   CELULAR
+   ============================================================ */
+
 @media (max-width: 550px) {
+
+  .comparison-section {
+    padding: 40px 15px 60px;
+  }
+
+  .comparison-head {
+    padding-top: 70px;
+  }
+
+  .nav-actions {
+    right: 0;
+
+    gap: 6px;
+  }
+
+  .nav-cta {
+    padding: 10px 14px;
+
+    font-size: 12px;
+  }
 
   .comparison-box {
     padding: 20px;
+
     border-radius: 20px;
   }
 
@@ -395,16 +558,19 @@ body {
 
   .result-values {
     flex-direction: column;
+
     gap: 20px;
   }
 
   .list-header {
     grid-template-columns: 1fr 80px 60px;
+
     font-size: 9px;
   }
 
   .comparison-result {
     padding: 24px;
+
     border-radius: 20px;
   }
 }
