@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const usuarioService = require("../services/usuarioService");
 
 async function listarUsuarios(req, res) {
@@ -37,17 +38,38 @@ async function buscarUsuarioPorId(req, res) {
 }
 
 async function criarUsuario(req, res) {
-  try {
-    const usuario = await usuarioService.criarUsuario(req.body);
+    try {
+        const { nome, email, senha } = req.body;
 
-    return res.status(201).json(usuario);
-  } catch (error) {
-    console.error("Erro ao criar usuário:", error);
+        if (!nome || !email || !senha) {
+            return res.status(400).json({
+                error: "Nome, email e senha são obrigatórios"
+            });
+        }
 
-    return res.status(500).json({
-      error: "Erro ao criar usuário"
-    });
-  }
+        const senhaHash = await bcrypt.hash(senha, 10);
+
+        const usuario = await usuarioService.criarUsuario({
+            nome,
+            email,
+            senhaHash
+        });
+
+        return res.status(201).json(usuario);
+
+    } catch (error) {
+        console.error("Erro ao criar usuário:", error);
+
+        if (error.code === "P2002") {
+            return res.status(409).json({
+                error: "Este email já está cadastrado"
+            });
+        }
+
+        return res.status(500).json({
+            error: "Erro ao criar usuário"
+        });
+    }
 }
 
 async function atualizarUsuario(req, res) {
