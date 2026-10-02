@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
  
-/// Tema visual único do app, usado no MaterialApp (main.dart).
-/// Todas as telas devem puxar cores/estilos daqui em vez de usar
-/// valores soltos, pra manter a identidade visual consistente.
 class AppTheme {
   AppTheme._();
  

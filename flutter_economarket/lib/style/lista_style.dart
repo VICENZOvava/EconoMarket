@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-/// Estilos exclusivos da tela Lista.
-///
-/// Sem protótipo oficial pra essa tela ainda — desenhado a partir do
-/// RF005 (lista de compras e cálculo do total) e do padrão visual
-/// já usado em Promoções e Comparar. Ajuste quando o grupo definir
-/// o layout oficial.
 class ListaStyle {
   ListaStyle._();
 

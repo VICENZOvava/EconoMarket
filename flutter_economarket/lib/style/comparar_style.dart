@@ -16,7 +16,7 @@ class CompararStyle {
     color: AppColors.textSecondary,
   );
 
-  // Card verde "Mais econômico para sua lista"
+  // Card verde "Mais econômico para lista"
   static BoxDecoration get bestMarketCardDecoration => BoxDecoration(
         color: AppColors.primaryGreen,
         borderRadius: BorderRadius.circular(20),

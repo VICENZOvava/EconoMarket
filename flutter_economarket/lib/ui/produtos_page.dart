@@ -4,18 +4,6 @@ import '../style/produtos_style.dart';
 
 enum _SortOption { menorPreco, maiorEconomia }
 
-/// Tela Produtos: catálogo geral, com busca, filtro por categoria e
-/// ordenação (RF003, RF004 e RF007).
-///
-/// Sem protótipo oficial ainda pra essa tela — desenho baseado nos
-/// requisitos e no padrão visual das outras telas. É essa tela que
-/// deve abrir quando o usuário tocar em "+ Adicionar produto" na
-/// Lista, ou numa categoria/busca da Home (ainda não ligado — ver
-/// TODOs nessas telas).
-///
-/// TODO: os produtos estão fixos (mock) só pra montar o layout e a
-/// interação de busca/filtro/ordenação. Trocar pelos produtos reais
-/// (RF003) quando o back-end / modelo de dados estiver pronto.
 class ProdutosPage extends StatefulWidget {
   const ProdutosPage({super.key});
 
@@ -127,7 +115,7 @@ class _ProdutosPageState extends State<ProdutosPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
         itemCount: _categories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
           final category = _categories[index];
           final active = category == _selectedCategory;
@@ -174,8 +162,6 @@ class _ProdutosPageState extends State<ProdutosPage> {
   }
 }
 
-// TODO: mesma lista de categorias usada na Home e em Promoções — vale
-// centralizar isso num lugar só quando o modelo compartilhado existir.
 const List<String> _categories = [
   'Todos',
   'Hortifruti',
@@ -205,15 +191,13 @@ class _Product {
   });
 }
 
-// TODO: preços mock — mesmos valores já usados em Promoções/Comparar
-// pros 4 primeiros produtos, pra manter consistência entre as telas.
 const List<_Product> _products = [
   _Product(
     name: 'Leite Integral 1L',
     unit: '1L',
     category: 'Bebidas',
     bestPrice: 4.79,
-    bestMarket: 'Carrefour',
+    bestMarket: 'Poupe Bem',
     oldPrice: 5.49,
     discountPercent: 13,
   ),
@@ -222,7 +206,7 @@ const List<_Product> _products = [
     unit: '5kg',
     category: 'Mercearia',
     bestPrice: 24.90,
-    bestMarket: 'Extra',
+    bestMarket: 'Santana',
     oldPrice: 27.99,
     discountPercent: 11,
   ),
@@ -231,7 +215,7 @@ const List<_Product> _products = [
     unit: '900ml',
     category: 'Mercearia',
     bestPrice: 7.99,
-    bestMarket: 'Carrefour',
+    bestMarket: 'Guarani',
     oldPrice: 9.99,
     discountPercent: 20,
   ),
@@ -240,7 +224,7 @@ const List<_Product> _products = [
     unit: 'kg',
     category: 'Carnes',
     bestPrice: 10.99,
-    bestMarket: 'Assaí',
+    bestMarket: 'Tenda',
     oldPrice: 13.99,
     discountPercent: 21,
   ),
@@ -249,28 +233,28 @@ const List<_Product> _products = [
     unit: 'kg',
     category: 'Hortifruti',
     bestPrice: 4.49,
-    bestMarket: 'Assaí',
+    bestMarket: 'Unidos',
   ),
   _Product(
     name: 'Detergente',
     unit: '500ml',
     category: 'Limpeza',
     bestPrice: 2.29,
-    bestMarket: 'Atacadão',
+    bestMarket: 'Antoneli',
   ),
   _Product(
     name: 'Sabonete',
     unit: '90g',
     category: 'Higiene',
     bestPrice: 1.99,
-    bestMarket: 'Carrefour',
+    bestMarket: 'Poupe Bem',
   ),
   _Product(
     name: 'Refrigerante 2L',
     unit: '2L',
     category: 'Bebidas',
     bestPrice: 7.49,
-    bestMarket: 'Extra',
+    bestMarket: 'Santana',
   ),
 ];
 
@@ -289,7 +273,6 @@ class _ProductCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              // TODO: trocar por Image.network/Image.asset com a foto real
               AspectRatio(
                 aspectRatio: 1.3,
                 child: Container(
@@ -346,8 +329,6 @@ class _ProductCard extends StatelessWidget {
                   ],
                 ),
               ),
-              // TODO: ligar à Lista (adicionar este produto) quando o
-              // estado compartilhado entre as telas existir.
               GestureDetector(
                 onTap: () {},
                 child: Container(

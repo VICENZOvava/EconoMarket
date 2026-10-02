@@ -2,13 +2,6 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 import '../style/comparar_style.dart';
 
-/// Tela de Comparação de Preços (RF004 - comparação de preços,
-/// RF008 - resumo geral e gráfico comparativo).
-///
-/// TODO: todos os dados (mercados, totais e preços por produto) estão
-/// fixos (mock) só pra montar o layout. Trocar pelos dados reais da
-/// lista de compras do usuário quando o back-end / modelo de dados
-/// estiver pronto — ver observação de arquitetura no fim do arquivo.
 class CompararPage extends StatelessWidget {
   const CompararPage({super.key});
 
@@ -134,10 +127,6 @@ class CompararPage extends StatelessWidget {
   }
 
   Widget _buildMarketTotalsCard() {
-    // Confirmado no print real: o mercado mais barato aparece com a
-    // barra cheia (verde) e cada mercado seguinte, em ordem crescente
-    // de preço, aparece com uma barra proporcionalmente mais curta —
-    // não é proporcional ao valor em si, é um ranking visual.
     final sortedMarkets = [..._marketTotals]
       ..sort((a, b) => a.total.compareTo(b.total));
 
@@ -229,14 +218,13 @@ class _MarketTotal {
   const _MarketTotal({required this.name, required this.total});
 }
 
-// TODO: nomes de mercado provisórios — confirmar/ajustar com a lista
-// real de supermercados cadastrados (RF002) antes da entrega final.
+
 const List<_MarketTotal> _marketTotals = [
-  _MarketTotal(name: 'Assaí', total: 36.96),
-  _MarketTotal(name: 'Atacadão', total: 38.47),
-  _MarketTotal(name: 'Carrefour', total: 44.17),
-  _MarketTotal(name: 'Extra', total: 47.67),
-  _MarketTotal(name: 'Pão de Açúcar', total: 49.96),
+  _MarketTotal(name: 'Santana', total: 36.96),
+  _MarketTotal(name: 'Poupe Bem', total: 38.47),
+  _MarketTotal(name: 'Guarani', total: 44.17),
+  _MarketTotal(name: 'Tenda', total: 47.67),
+  _MarketTotal(name: 'Unidos', total: 49.96),
 ];
 
 class _MarketPrice {
@@ -267,23 +255,23 @@ class _ProductComparison {
   });
 }
 
-// TODO: mesma observação de nomes de mercado acima se aplica aqui.
+
 const List<_ProductComparison> _products = [
   _ProductComparison(
     name: 'Leite Integral',
     unit: '1L',
     quantity: 1,
     prices: [
-      _MarketPrice(market: 'Assaí', price: 4.49),
-      _MarketPrice(market: 'Atacadão', price: 4.59),
+      _MarketPrice(market: 'Santana', price: 4.49),
+      _MarketPrice(market: 'Poupe Bem', price: 4.59),
       _MarketPrice(
-        market: 'Carrefour',
+        market: 'Guarani',
         price: 4.79,
         oldPrice: 5.49,
         discountPercent: 13,
       ),
-      _MarketPrice(market: 'Extra', price: 5.29),
-      _MarketPrice(market: 'Pão de Açúcar', price: 5.49),
+      _MarketPrice(market: 'Tenda', price: 5.29),
+      _MarketPrice(market: 'Unidos', price: 5.49),
     ],
   ),
   _ProductComparison(
@@ -291,16 +279,16 @@ const List<_ProductComparison> _products = [
     unit: '5kg',
     quantity: 1,
     prices: [
-      _MarketPrice(market: 'Assaí', price: 26.50),
-      _MarketPrice(market: 'Atacadão', price: 25.80),
-      _MarketPrice(market: 'Carrefour', price: 27.10),
+      _MarketPrice(market: 'Santana', price: 26.50),
+      _MarketPrice(market: 'Poupe Bem', price: 25.80),
+      _MarketPrice(market: 'Guarani', price: 27.10),
       _MarketPrice(
-        market: 'Extra',
+        market: 'Tenda',
         price: 24.90,
         oldPrice: 27.99,
         discountPercent: 11,
       ),
-      _MarketPrice(market: 'Pão de Açúcar', price: 28.40),
+      _MarketPrice(market: 'Unidos', price: 28.40),
     ],
   ),
   _ProductComparison(
@@ -308,16 +296,16 @@ const List<_ProductComparison> _products = [
     unit: '900ml',
     quantity: 1,
     prices: [
-      _MarketPrice(market: 'Assaí', price: 8.49),
-      _MarketPrice(market: 'Atacadão', price: 8.20),
+      _MarketPrice(market: 'Santana', price: 8.49),
+      _MarketPrice(market: 'Poupe Bem', price: 8.20),
       _MarketPrice(
-        market: 'Carrefour',
+        market: 'Guarani',
         price: 7.99,
         oldPrice: 9.99,
         discountPercent: 20,
       ),
-      _MarketPrice(market: 'Extra', price: 8.99),
-      _MarketPrice(market: 'Pão de Açúcar', price: 9.20),
+      _MarketPrice(market: 'Tenda', price: 8.99),
+      _MarketPrice(market: 'Unidos', price: 9.20),
     ],
   ),
   _ProductComparison(
@@ -326,15 +314,15 @@ const List<_ProductComparison> _products = [
     quantity: 1,
     prices: [
       _MarketPrice(
-        market: 'Assaí',
+        market: 'Santana',
         price: 10.99,
         oldPrice: 13.99,
         discountPercent: 21,
       ),
-      _MarketPrice(market: 'Atacadão', price: 11.49),
-      _MarketPrice(market: 'Carrefour', price: 12.20),
-      _MarketPrice(market: 'Extra', price: 12.80),
-      _MarketPrice(market: 'Pão de Açúcar', price: 13.50),
+      _MarketPrice(market: 'Unidos', price: 11.49),
+      _MarketPrice(market: 'Guarani', price: 12.20),
+      _MarketPrice(market: 'Tenda', price: 12.80),
+      _MarketPrice(market: 'Unidos', price: 13.50),
     ],
   ),
 ];
@@ -357,7 +345,6 @@ class _ProductComparisonRow extends StatelessWidget {
         children: [
           Row(
             children: [
-              // TODO: trocar por Image.network/Image.asset com a foto real
               Container(
                 width: 40,
                 height: 40,
@@ -385,7 +372,7 @@ class _ProductComparisonRow extends StatelessWidget {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: product.prices.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 8),
+              separatorBuilder: (_, _) => const SizedBox(width: 8),
               itemBuilder: (context, index) {
                 final price = product.prices[index];
                 final isBest = price.price == bestPrice;

@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 import '../style/promocoes_style.dart';
 
-/// Tela de Promoções (RF006 - Visualização de promoções).
-///
-/// TODO: a lista de produtos está fixa (mock) só pra montar o layout.
-/// Trocar pelos produtos reais em promoção quando o back-end / modelo
-/// de dados estiver pronto. O filtro por categoria já funciona sobre
-/// o campo `category` de cada item mock.
+
 class PromocoesPage extends StatefulWidget {
   const PromocoesPage({super.key});
 
@@ -48,7 +43,7 @@ class _PromocoesPageState extends State<PromocoesPage> {
                   : ListView.separated(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                       itemCount: filtered.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
                       itemBuilder: (context, index) =>
                           _PromoListCard(promo: filtered[index]),
                     ),
@@ -84,7 +79,7 @@ class _PromocoesPageState extends State<PromocoesPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
         itemCount: _categoryFilters.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
           final category = _categoryFilters[index];
           final active = category.label == _selectedCategory;
@@ -121,9 +116,6 @@ class _CategoryFilter {
   const _CategoryFilter(this.label, this.icon);
 }
 
-// TODO: "Limpeza" e "Higiene" foram incluídas pra manter consistência
-// com as categorias da Home; ajuste a lista conforme o print completo
-// (o print original corta na 4ª opção).
 const List<_CategoryFilter> _categoryFilters = [
   _CategoryFilter('Todos', null),
   _CategoryFilter('Hortifruti', '🥦'),
@@ -157,7 +149,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Italac',
     name: 'Leite Integral 1L',
-    market: 'Carrefour',
+    market: 'Poupe Bem',
     oldPrice: 5.49,
     newPrice: 4.79,
     discountPercent: 13,
@@ -166,7 +158,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Tio João',
     name: 'Arroz Branco 5kg',
-    market: 'Extra',
+    market: 'Santana',
     oldPrice: 27.99,
     newPrice: 24.90,
     discountPercent: 11,
@@ -175,7 +167,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Liza',
     name: 'Óleo de Soja 900ml',
-    market: 'Carrefour',
+    market: 'Guarani',
     oldPrice: 9.99,
     newPrice: 7.99,
     discountPercent: 20,
@@ -184,7 +176,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Sadia',
     name: 'Frango Inteiro kg',
-    market: 'Assaí',
+    market: 'Tenda',
     oldPrice: 13.99,
     newPrice: 10.99,
     discountPercent: 21,
@@ -206,7 +198,6 @@ class _PromoListCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              // TODO: trocar por Image.network/Image.asset com a foto real
               Container(
                 width: 72,
                 height: 72,
@@ -254,7 +245,6 @@ class _PromoListCard extends StatelessWidget {
               ],
             ),
           ),
-          // TODO: ligar ao carrinho / lista de compras quando existir
           GestureDetector(
             onTap: () {},
             child: Container(

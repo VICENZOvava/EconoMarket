@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 import '../style/perfil_style.dart';
 
-/// Tela de Perfil do usuário.
-///
-/// TODO: todos os dados (nome, email, economia, listas, mercados
-/// favoritos e opções) estão fixos (mock) só pra montar o layout.
-/// Trocar pelos dados reais do usuário logado quando o back-end /
-/// modelo de dados estiver pronto.
+
 class PerfilPage extends StatelessWidget {
   const PerfilPage({super.key});
 
@@ -49,7 +44,6 @@ class PerfilPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TODO: trocar por Image.network/CircleAvatar com a foto real
           Container(
             width: 64,
             height: 64,
@@ -135,11 +129,11 @@ class PerfilPage extends StatelessWidget {
   Widget _buildFavoriteMarketsCard() {
     const markets = [
       _FavoriteMarket(
-          initials: 'AS', label: 'Assaí', color: AppColors.primaryGreen),
+          initials: 'PB', label: 'Poupe Bem', color: Color.fromARGB(255, 255, 0, 0)),
       _FavoriteMarket(
-          initials: 'CA', label: 'Carrefour', color: AppColors.bannerBlue),
+          initials: 'GA', label: 'Guarani', color: Color.fromARGB(255, 255, 183, 0)),
       _FavoriteMarket(
-          initials: 'AT', label: 'Atacadão', color: Color(0xFFFB8C00)),
+          initials: 'TE', label: 'Tenda', color: Color.fromARGB(255, 0, 100, 250)),
     ];
 
     return Container(
@@ -195,7 +189,7 @@ class PerfilPage extends StatelessWidget {
         icon: Icons.storefront,
         iconBackground: Color(0xFFE3F2FD),
         title: 'Mercados favoritos',
-        subtitle: 'Assaí, Carrefour',
+        subtitle: 'Poupe Bem, Guarani, Santana',
       ),
       _MenuItem(
         icon: Icons.notifications,
@@ -207,7 +201,7 @@ class PerfilPage extends StatelessWidget {
         icon: Icons.location_on,
         iconBackground: Color(0xFFFFEBEE),
         title: 'Minha região',
-        subtitle: 'São Paulo, SP',
+        subtitle: 'Amparo, SP',
       ),
       _MenuItem(
         icon: Icons.lock,

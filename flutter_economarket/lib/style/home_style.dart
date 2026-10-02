@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-/// Estilos exclusivos da Home — coisas que não fazem parte do tema
-/// global (theme.dart) por serem específicas dessa tela: o header
-/// verde, o banner de ofertas, o card do mercado mais barato,
-/// os ícones de categoria e o badge de desconto.
+
 class HomeStyle {
   HomeStyle._();
 
@@ -48,7 +45,6 @@ class HomeStyle {
     fontSize: 13,
   );
 
-  // Card genérico usado no "mercado mais barato" e nos cards de promoção
   static BoxDecoration get cardDecoration => BoxDecoration(
         color: AppColors.cardWhite,
         borderRadius: BorderRadius.circular(18),

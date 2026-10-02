@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-/// Estilos exclusivos da tela Produtos.
-///
-/// Sem protótipo oficial ainda — desenhado a partir do RF003
-/// (cadastro/consulta de produtos), RF004 (menor preço em destaque)
-/// e RF007 (filtros e ordenação), seguindo o padrão visual já usado
-/// nas outras telas. Ajuste quando o grupo definir o layout oficial.
+
 class ProdutosStyle {
   ProdutosStyle._();
 

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-/// Estilos exclusivos da tela Perfil.
+/// Estilo exclusivo da tela Perfil.
 class PerfilStyle {
   PerfilStyle._();
 
-  // Header (avatar + nome + email + avaliação)
   static const double headerBottomRadius = 28;
   static const EdgeInsets headerPadding = EdgeInsets.fromLTRB(20, 24, 20, 32);
 
