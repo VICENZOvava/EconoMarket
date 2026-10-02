@@ -1,3 +1,6 @@
+import { apiRequest } from "./api.js";
+import { salvarToken } from "./auth.js";
+
 const loginForm = document.getElementById("loginForm");
 const mensagem = document.getElementById("mensagem");
 

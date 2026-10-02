@@ -1,3 +1,6 @@
+import { apiRequest } from "./api.js";
+import { estaAutenticado, logout } from "./auth.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
     if (!estaAutenticado()) {
         window.location.href = "login.html";

@@ -1,20 +1,20 @@
-function salvarToken(token) {
-    localStorage.setItem("token", token);
+export function salvarToken(token) {
+localStorage.setItem("token", token);
 }
 
-function obterToken() {
-    return localStorage.getItem("token");
+export function obterToken() {
+return localStorage.getItem("token");
 }
 
-function removerToken() {
-    localStorage.removeItem("token");
+export function removerToken() {
+localStorage.removeItem("token");
 }
 
-function estaAutenticado() {
-    return !!obterToken();
+export function estaAutenticado() {
+return !!obterToken();
 }
 
-function logout() {
-    removerToken();
-    window.location.href = "login.html";
+export function logout() {
+removerToken();
+window.location.href = "login.html";
 }

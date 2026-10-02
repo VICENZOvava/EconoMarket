@@ -4,21 +4,14 @@ function obterToken() {
     return localStorage.getItem("token");
 }
 
-async function apiRequest(endpoint, options = {}) {
+export async function apiRequest(endpoint, options = {}) {
     const token = obterToken();
 
     const response = await fetch(`${API_URL}${endpoint}`, {
         ...options,
-
         headers: {
             "Content-Type": "application/json",
-
-            ...(token
-                ? {
-                    Authorization: `Bearer ${token}`
-                }
-                : {}),
-
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
             ...(options.headers || {})
         }
     });
@@ -26,9 +19,7 @@ async function apiRequest(endpoint, options = {}) {
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error(
-            data.error || "Erro ao realizar requisição"
-        );
+        throw new Error(data.error || "Erro ao realizar requisição");
     }
 
     return data;
