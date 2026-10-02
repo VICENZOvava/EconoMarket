@@ -1,6 +1,6 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
+import '../style/colors.dart';
 import '../widgets/ecomarket_logo.dart';
 import 'login_screen.dart';
 
@@ -12,13 +12,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  int page = 0;
-  Timer? timer;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    timer = Timer(const Duration(seconds: 2), () {
+    _timer = Timer(const Duration(seconds: 2), () {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
@@ -29,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void dispose() {
-    timer?.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -57,28 +56,25 @@ class _SplashScreenState extends State<SplashScreen> {
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.green.withOpacity(.18),
+                        color: AppColors.green.withValues(alpha: .18),
                         blurRadius: 25,
                         spreadRadius: 8,
                       ),
                     ],
                   ),
                   child: const Icon(
-                    Icons.person_outline_rounded,
+                    Icons.shopping_basket_outlined,
                     color: Colors.white,
                     size: 62,
                   ),
                 ),
                 const SizedBox(height: 26),
-                const EcoMarketLogo(
-                  iconSize: 0,
-                  textSize: 36,
-                ),
+                const EcoMarketLogo(iconSize: 0, textSize: 36),
                 const SizedBox(height: 12),
                 const Text(
                   'Compare preços. Economize mais.',
                   style: TextStyle(
-                    color: Color(0xFFAAAAAA),
+                    color: Color(0xFF777777),
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                   ),
@@ -114,3 +110,4 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+

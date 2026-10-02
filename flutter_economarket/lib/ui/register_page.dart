@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
+﻿import 'package:flutter/material.dart';
+import '../style/colors.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/green_button.dart';
 
@@ -15,20 +15,16 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: const Row(
-                  children: [
-                    Icon(Icons.arrow_back_ios_new_rounded, size: 18),
-                    SizedBox(width: 10),
-                    Text(
-                      'Voltar',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
+              TextButton.icon(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
+                label: const Text(
+                  'Voltar',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
+                style: TextButton.styleFrom(
+                  foregroundColor: AppColors.text,
+                  padding: EdgeInsets.zero,
                 ),
               ),
               const SizedBox(height: 34),
@@ -44,10 +40,7 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'Junte-se a milhares que economizam todo mês',
-                style: TextStyle(
-                  color: Color(0xFFAAAAAA),
-                  fontSize: 15,
-                ),
+                style: TextStyle(color: Color(0xFF777777), fontSize: 15),
               ),
               const SizedBox(height: 34),
               const _Label('Nome completo'),
@@ -63,23 +56,15 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(height: 19),
               const _Label('Senha'),
               const SizedBox(height: 9),
-              const CustomTextField(
-                hint: '•••••••••',
-                obscureText: true,
-              ),
+              const CustomTextField(hint: '•••••••••', obscureText: true),
               const SizedBox(height: 19),
               const _Label('Confirmar senha'),
               const SizedBox(height: 9),
-              const CustomTextField(
-                hint: '•••••••••',
-                obscureText: true,
-              ),
+              const CustomTextField(hint: '•••••••••', obscureText: true),
               const SizedBox(height: 24),
               GreenButton(
                 text: 'Criar conta',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                onPressed: () => Navigator.pop(context),
               ),
             ],
           ),

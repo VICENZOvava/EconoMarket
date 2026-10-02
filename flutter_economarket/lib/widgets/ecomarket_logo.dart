@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
+import '../style/colors.dart';
 
 class EcoMarketLogo extends StatelessWidget {
   final double iconSize;

@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
+﻿import 'package:flutter/material.dart';
+import '../style/colors.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/ecomarket_logo.dart';
 import '../widgets/green_button.dart';
-import 'register_screen.dart';
+import 'main_navigation.dart';
+import 'register_page.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -17,10 +18,7 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const EcoMarketLogo(
-                iconSize: 44,
-                textSize: 27,
-              ),
+              const EcoMarketLogo(iconSize: 44, textSize: 27),
               const SizedBox(height: 38),
               const Text(
                 'Bem-vindo de volta 👋',
@@ -34,10 +32,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'Entre para comparar preços e economizar',
-                style: TextStyle(
-                  color: Color(0xFFAAAAAA),
-                  fontSize: 15,
-                ),
+                style: TextStyle(color: Color(0xFF777777), fontSize: 15),
               ),
               const SizedBox(height: 38),
               const _Label('E-mail'),
@@ -72,7 +67,14 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 7),
               GreenButton(
                 text: 'Entrar',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const MainNavigation(),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 24),
               Row(
@@ -114,10 +116,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                      color: AppColors.border,
-                      width: 2,
-                    ),
+                    side: const BorderSide(color: AppColors.border, width: 2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
