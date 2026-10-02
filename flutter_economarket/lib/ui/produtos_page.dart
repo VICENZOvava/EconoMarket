@@ -4,18 +4,6 @@ import '../style/produtos_style.dart';
 
 enum _SortOption { menorPreco, maiorEconomia }
 
-/// Tela Produtos: catálogo geral, com busca, filtro por categoria e
-/// ordenação (RF003, RF004 e RF007).
-///
-/// Sem protótipo oficial ainda pra essa tela — desenho baseado nos
-/// requisitos e no padrão visual das outras telas. É essa tela que
-/// deve abrir quando o usuário tocar em "+ Adicionar produto" na
-/// Lista, ou numa categoria/busca da Home (ainda não ligado — ver
-/// TODOs nessas telas).
-///
-/// TODO: os produtos estão fixos (mock) só pra montar o layout e a
-/// interação de busca/filtro/ordenação. Trocar pelos produtos reais
-/// (RF003) quando o back-end / modelo de dados estiver pronto.
 class ProdutosPage extends StatefulWidget {
   const ProdutosPage({super.key});
 
@@ -127,7 +115,7 @@ class _ProdutosPageState extends State<ProdutosPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
         itemCount: _categories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
           final category = _categories[index];
           final active = category == _selectedCategory;
@@ -174,8 +162,6 @@ class _ProdutosPageState extends State<ProdutosPage> {
   }
 }
 
-// TODO: mesma lista de categorias usada na Home e em Promoções — vale
-// centralizar isso num lugar só quando o modelo compartilhado existir.
 const List<String> _categories = [
   'Todos',
   'Hortifruti',
@@ -205,8 +191,6 @@ class _Product {
   });
 }
 
-// TODO: preços mock — mesmos valores já usados em Promoções/Comparar
-// pros 4 primeiros produtos, pra manter consistência entre as telas.
 const List<_Product> _products = [
   _Product(
     name: 'Leite Integral 1L',
@@ -289,7 +273,6 @@ class _ProductCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              // TODO: trocar por Image.network/Image.asset com a foto real
               AspectRatio(
                 aspectRatio: 1.3,
                 child: Container(
@@ -346,8 +329,6 @@ class _ProductCard extends StatelessWidget {
                   ],
                 ),
               ),
-              // TODO: ligar à Lista (adicionar este produto) quando o
-              // estado compartilhado entre as telas existir.
               GestureDetector(
                 onTap: () {},
                 child: Container(

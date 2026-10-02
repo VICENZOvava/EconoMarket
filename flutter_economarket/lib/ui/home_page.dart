@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 import '../style/home_style.dart';
 
-/// Tela inicial do app.
-///
-/// TODO: os dados abaixo (nome do usuário, mercado mais barato,
-/// categorias e produtos em promoção) estão fixos (mock) só pra
-/// montar o layout. Trocar pelos dados reais quando o back-end /
-/// modelo de dados estiver pronto.
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -58,7 +52,6 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // TODO: trocar "Ana Paula" pelo nome do usuário logado
               const Text('Olá, Ana Paula 👋', style: HomeStyle.greetingStyle),
               Container(
                 width: 40,
@@ -136,7 +129,6 @@ class HomePage extends StatelessWidget {
             child: const Text('Ver ofertas →'),
           ),
           const SizedBox(height: 14),
-          // TODO: trocar por um PageView real se o banner virar um carrossel
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(3, (i) {
@@ -226,7 +218,7 @@ class HomePage extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: _categories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, _) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final category = _categories[index];
           return Column(
@@ -253,7 +245,7 @@ class HomePage extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: _promoPreview.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, _) => const SizedBox(width: 12),
         itemBuilder: (context, index) =>
             _PromoCard(promo: _promoPreview[index]),
       ),
@@ -327,7 +319,6 @@ class _PromoCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              // TODO: trocar por Image.network/Image.asset com a foto real
               Container(
                 height: 90,
                 width: double.infinity,

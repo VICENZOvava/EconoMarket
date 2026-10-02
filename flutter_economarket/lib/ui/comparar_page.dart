@@ -2,13 +2,6 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 import '../style/comparar_style.dart';
 
-/// Tela de Comparação de Preços (RF004 - comparação de preços,
-/// RF008 - resumo geral e gráfico comparativo).
-///
-/// TODO: todos os dados (mercados, totais e preços por produto) estão
-/// fixos (mock) só pra montar o layout. Trocar pelos dados reais da
-/// lista de compras do usuário quando o back-end / modelo de dados
-/// estiver pronto — ver observação de arquitetura no fim do arquivo.
 class CompararPage extends StatelessWidget {
   const CompararPage({super.key});
 
@@ -134,10 +127,6 @@ class CompararPage extends StatelessWidget {
   }
 
   Widget _buildMarketTotalsCard() {
-    // Confirmado no print real: o mercado mais barato aparece com a
-    // barra cheia (verde) e cada mercado seguinte, em ordem crescente
-    // de preço, aparece com uma barra proporcionalmente mais curta —
-    // não é proporcional ao valor em si, é um ranking visual.
     final sortedMarkets = [..._marketTotals]
       ..sort((a, b) => a.total.compareTo(b.total));
 
@@ -229,8 +218,7 @@ class _MarketTotal {
   const _MarketTotal({required this.name, required this.total});
 }
 
-// TODO: nomes de mercado provisórios — confirmar/ajustar com a lista
-// real de supermercados cadastrados (RF002) antes da entrega final.
+
 const List<_MarketTotal> _marketTotals = [
   _MarketTotal(name: 'Santana', total: 36.96),
   _MarketTotal(name: 'Poupe Bem', total: 38.47),
@@ -267,7 +255,7 @@ class _ProductComparison {
   });
 }
 
-// TODO: mesma observação de nomes de mercado acima se aplica aqui.
+
 const List<_ProductComparison> _products = [
   _ProductComparison(
     name: 'Leite Integral',
@@ -357,7 +345,6 @@ class _ProductComparisonRow extends StatelessWidget {
         children: [
           Row(
             children: [
-              // TODO: trocar por Image.network/Image.asset com a foto real
               Container(
                 width: 40,
                 height: 40,
@@ -385,7 +372,7 @@ class _ProductComparisonRow extends StatelessWidget {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: product.prices.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 8),
+              separatorBuilder: (_, _) => const SizedBox(width: 8),
               itemBuilder: (context, index) {
                 final price = product.prices[index];
                 final isBest = price.price == bestPrice;

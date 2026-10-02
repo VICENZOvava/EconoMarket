@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 import '../style/perfil_style.dart';
 
-/// Tela de Perfil do usuário.
-///
-/// TODO: todos os dados (nome, email, economia, listas, mercados
-/// favoritos e opções) estão fixos (mock) só pra montar o layout.
-/// Trocar pelos dados reais do usuário logado quando o back-end /
-/// modelo de dados estiver pronto.
+
 class PerfilPage extends StatelessWidget {
   const PerfilPage({super.key});
 
@@ -49,7 +44,6 @@ class PerfilPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TODO: trocar por Image.network/CircleAvatar com a foto real
           Container(
             width: 64,
             height: 64,

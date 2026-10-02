@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 import '../style/colors.dart';
 import '../style/lista_style.dart';
 
-/// Tela "Minha Lista" (RF005 - Lista de compras e cálculo do total).
-///
-/// Sem protótipo oficial pra essa tela ainda — desenho baseado no
-/// requisito RF005 e no padrão visual já usado em Promoções e
-/// Comparar. Ajuste livremente quando o grupo definir o layout
-/// oficial.
-///
-/// TODO: os itens estão em estado local (mock) só pra montar a
-/// interação de quantidade/remoção. Trocar por um gerenciamento de
-/// estado compartilhado (Provider/Bloc/Riverpod, a critério do
-/// grupo) quando a lista precisar persistir ou alimentar a tela de
-/// Comparar com os itens reais escolhidos pelo usuário.
 class ListaPage extends StatefulWidget {
   const ListaPage({super.key});
 
@@ -72,7 +60,7 @@ class _ListaPageState extends State<ListaPage> {
                   : ListView.separated(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                       itemCount: _items.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
                       itemBuilder: (context, index) => _ListItemCard(
                         item: _items[index],
                         onIncrement: () => _increment(_items[index]),
@@ -153,9 +141,6 @@ class _ListaPageState extends State<ListaPage> {
         children: [
           _buildAddButton(),
           const SizedBox(height: 16),
-          // TODO: ligar a navegação pra aba "Comparar" (índice 2 no
-          // MainNavigation, em main.dart) quando esse botão for
-          // tocado — hoje ele não faz nada.
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
@@ -171,8 +156,6 @@ class _ListaPageState extends State<ListaPage> {
 
   Widget _buildAddButton() {
     return GestureDetector(
-      // TODO: abrir a tela de Produtos (busca/catálogo) pra escolher
-      // o que adicionar à lista.
       onTap: () {},
       child: Container(
         width: double.infinity,
@@ -220,7 +203,6 @@ class _ListItemCard extends StatelessWidget {
       decoration: ListaStyle.itemCardDecoration,
       child: Row(
         children: [
-          // TODO: trocar por Image.network/Image.asset com a foto real
           Container(
             width: 48,
             height: 48,
