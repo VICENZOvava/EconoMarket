@@ -1,8 +1,8 @@
-
 import { apiRequest } from "./api.js";
 
 let lista = [];
 let produtos = [];
+let categoriasSelecionadas = new Set();
 
 const produtoInput = document.getElementById("produto");
 const quantidadeInput = document.getElementById("quantidade");
@@ -14,6 +14,17 @@ const mercadoMaisBarato = document.getElementById("mercadoMaisBarato");
 const totalCompra = document.getElementById("totalCompra");
 const economia = document.getElementById("economia");
 const produtosDisponiveis = document.getElementById("produtosDisponiveis");
+const categoriasFiltro = document.getElementById("categoriasFiltro");
+
+const categoriasEmojis = {
+    alimentos: "🥦",
+    "alimentos-e-bebidas": "🥦",
+    "frios-e-laticinios": "🧀",
+    bebidas: "🥤",
+    limpeza: "🧹",
+    higiene: "🧴",
+    mercearia: "🛒"
+};
 
 const mercados = {
     assai: { nome: "Assaí", slugs: ["assai", "assaí"], totalId: "totalAssai", barId: "barAssai", positionId: "positionAssai" },
@@ -35,7 +46,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         produtos = await apiRequest("/api/produtos");
+
+        renderizarCategoriasFiltro();
         carregarProdutosNoCampo();
+
         btnAdicionarProduto.disabled = false;
         produtoInput.disabled = false;
         quantidadeInput.disabled = false;
@@ -72,12 +86,126 @@ function normalizarTexto(texto) {
         .trim();
 }
 
+function obterCategorias() {
+    const categorias = new Map();
+
+    produtos.forEach(produto => {
+        if (!produto.categoria) return;
+
+        const slug = produto.categoria.slug;
+        const nome = produto.categoria.nome;
+
+        if (slug && nome) {
+            categorias.set(slug, {
+                slug,
+                nome
+            });
+        }
+    });
+
+    return Array.from(categorias.values()).sort(
+        (a, b) => a.nome.localeCompare(b.nome, "pt-BR")
+    );
+}
+
+function obterEmojiCategoria(slug) {
+    return categoriasEmojis[slug] || "📦";
+}
+
+function renderizarCategoriasFiltro() {
+    if (!categoriasFiltro) return;
+
+    categoriasFiltro.innerHTML = "";
+
+    const botaoTodas = document.createElement("button");
+    botaoTodas.type = "button";
+    botaoTodas.className = "category-option";
+    botaoTodas.innerHTML = "<span class='category-emoji'>🛍️</span><span>Todas</span>";
+
+    if (categoriasSelecionadas.size === 0) {
+        botaoTodas.classList.add("category-option-active");
+        botaoTodas.setAttribute("aria-pressed", "true");
+    } else {
+        botaoTodas.setAttribute("aria-pressed", "false");
+    }
+
+    botaoTodas.addEventListener("click", () => {
+        categoriasSelecionadas.clear();
+        atualizarFiltros();
+    });
+
+    categoriasFiltro.appendChild(botaoTodas);
+
+    obterCategorias().forEach(categoria => {
+        const botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "category-option";
+
+        const emoji = document.createElement("span");
+        emoji.className = "category-emoji";
+        emoji.textContent = obterEmojiCategoria(categoria.slug);
+
+        const nome = document.createElement("span");
+        nome.textContent = categoria.nome;
+
+        botao.appendChild(emoji);
+        botao.appendChild(nome);
+
+        const selecionada = categoriasSelecionadas.has(categoria.slug);
+
+        if (selecionada) {
+            botao.classList.add("category-option-active");
+        }
+
+        botao.setAttribute("aria-pressed", String(selecionada));
+
+        botao.addEventListener("click", () => {
+            if (categoriasSelecionadas.has(categoria.slug)) {
+                categoriasSelecionadas.delete(categoria.slug);
+            } else {
+                categoriasSelecionadas.add(categoria.slug);
+            }
+
+            atualizarFiltros();
+        });
+
+        categoriasFiltro.appendChild(botao);
+    });
+}
+
+function produtosFiltrados() {
+    if (categoriasSelecionadas.size === 0) {
+        return produtos;
+    }
+
+    return produtos.filter(produto =>
+        produto.categoria &&
+        categoriasSelecionadas.has(produto.categoria.slug)
+    );
+}
+
+function atualizarFiltros() {
+    renderizarCategoriasFiltro();
+    carregarProdutosNoCampo();
+
+    const produtoDigitado = produtoInput.value.trim();
+
+    if (
+        produtoDigitado &&
+        !produtosFiltrados().some(
+            produto => normalizarTexto(produto.nome) === normalizarTexto(produtoDigitado)
+        )
+    ) {
+        produtoInput.value = "";
+    }
+}
+
 function carregarProdutosNoCampo() {
     if (!produtosDisponiveis) return;
 
     produtosDisponiveis.innerHTML = "";
 
-    produtos
+    [...produtosFiltrados()]
         .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
         .forEach(produto => {
             const option = document.createElement("option");
@@ -89,7 +217,7 @@ function carregarProdutosNoCampo() {
 function encontrarProduto(nome) {
     const nomeNormalizado = normalizarTexto(nome);
 
-    return produtos.find(
+    return produtosFiltrados().find(
         produto => normalizarTexto(produto.nome) === nomeNormalizado
     );
 }
@@ -134,7 +262,7 @@ function adicionarProduto() {
     const quantidade = Number(quantidadeInput.value);
 
     if (!produto) {
-        alert("Produto não encontrado. Escolha um produto cadastrado.");
+        alert("Produto não encontrado. Escolha um produto cadastrado nas categorias selecionadas.");
         produtoInput.focus();
         return;
     }
@@ -197,19 +325,15 @@ function obterProdutoDaLista(item) {
 function calcularTotais() {
     const totais = {};
 
-    Object.keys(mercados).forEach(
-        mercado => {
-            totais[mercado] = 0;
-        }
-    );
+    Object.keys(mercados).forEach(mercado => {
+        totais[mercado] = 0;
+    });
 
     const disponiveis = {};
 
-    Object.keys(mercados).forEach(
-        mercado => {
-            disponiveis[mercado] = true;
-        }
-    );
+    Object.keys(mercados).forEach(mercado => {
+        disponiveis[mercado] = true;
+    });
 
     lista.forEach(item => {
         const produto = obterProdutoDaLista(item);

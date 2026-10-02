@@ -1,15 +1,15 @@
 :root {
-  --bg: #f5efe2;
-  --bg-2: #ede6d6;
+  --bg: #fcf8ef;
+  --bg-2: #fff8e8;
   --ink: #141416;
   --ink-soft: #2b2b30;
   --mute: #8b847a;
   --line: #dad2bf;
-  --ghost: #ffc400d0; /* faded "big results" gray */
-  --orange-1: #d9a11f;
-  --orange-2: #e8df2b;
-  --orange-3: #f5c04e;
-  --orange-4: #fde28a;
+  --ghost: #25a34f; 
+  --orange-1: #88d91f;
+  --orange-2: #57e82b;
+  --orange-3: #91f54e;
+  --orange-4: #d1fd8a;
 }
 .nav-actions {
   display: flex;
@@ -77,9 +77,9 @@ body {
   height: 20px;
   border-radius: 50%;
   background: linear-gradient(180deg, var(--orange-1), var(--orange-4));
-  box-shadow: 0 4px 8px -2px rgba(220, 60, 30, 0.4),
+  box-shadow: 0 4px 8px -2px rgba(163, 220, 30, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    inset 0 -2px 3px rgba(120, 20, 0, 0.3);
+    inset 0 -2px 3px rgba(54, 120, 0, 0.3);
 }
 .nav-links {
   list-style: none;
@@ -250,11 +250,11 @@ body {
   
 }
 .card:hover {
-  box-shadow: 0 44px 70px -20px rgb(255, 204, 0),
-    0 22px 38px -10px rgb(255, 236, 142),
-    0 8px 14px -3px rgb(255, 248, 115),
-    inset 0 2px 0 rgb(241, 255, 180),
-    inset 0 -4px 8px rgba(255, 247, 136, 0.4);
+  box-shadow: 0 44px 70px -20px rgb(21, 255, 0),
+    0 22px 38px -10px rgb(146, 255, 142),
+    0 8px 14px -3px rgb(148, 255, 115),
+    inset 0 2px 0 rgb(180, 255, 186),
+    inset 0 -4px 8px rgba(180, 255, 136, 0.4);
 }
 
 
@@ -310,7 +310,7 @@ body {
 .card-8 {
   width: 200px;
   height: 345px;
-  left: 84%;
+  left: 82%;
   top: 50px;
   z-index: 2;
 }
@@ -442,7 +442,7 @@ body {
     var(--orange-4) 100%
   );
   position: relative;
-  box-shadow: 0 24px 40px -16px rgba(180, 50, 20, 0.4),
+  box-shadow: 0 24px 40px -16px rgba(20, 180, 47, 0.4),
     0 10px 22px -6px rgba(140, 40, 10, 0.22),
     inset 0 2px 0 rgba(255, 220, 180, 0.4),
     inset 0 -3px 6px rgba(120, 20, 0, 0.3);
@@ -535,7 +535,7 @@ body {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(232, 90, 43, 0.35), transparent 65%);
+  background: radial-gradient(circle, rgba(74, 232, 43, 0.35), transparent 65%);
   top: -200px;
   right: -100px;
   filter: blur(40px);

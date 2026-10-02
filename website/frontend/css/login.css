@@ -5,7 +5,7 @@ box-sizing: border-box;
 }
 body {
 font-family: Arial, sans-serif;
-background: #fffada;
+background: #e6e3d0;
 min-height: 100vh;
 display: flex;
 align-items: center;
@@ -28,7 +28,7 @@ margin-bottom: 8px;
 }
 .login-box > p {
 text-align: center;
-color: #ff990b;
+color: #60991e;
 margin-bottom: 30px;
 }
 .form-group {
@@ -55,7 +55,7 @@ width: 100%;
 padding: 12px;
 border: none;
 border-radius: 6px;
-background: #ffba6c;
+background: #66a320;
 color: rgb(255, 255, 255);
 font-size: 16px;
 cursor: pointer;
