@@ -157,7 +157,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Italac',
     name: 'Leite Integral 1L',
-    market: 'Carrefour',
+    market: 'Poupe Bem',
     oldPrice: 5.49,
     newPrice: 4.79,
     discountPercent: 13,
@@ -166,7 +166,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Tio João',
     name: 'Arroz Branco 5kg',
-    market: 'Extra',
+    market: 'Santana',
     oldPrice: 27.99,
     newPrice: 24.90,
     discountPercent: 11,
@@ -175,7 +175,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Liza',
     name: 'Óleo de Soja 900ml',
-    market: 'Carrefour',
+    market: 'Guarani',
     oldPrice: 9.99,
     newPrice: 7.99,
     discountPercent: 20,
@@ -184,7 +184,7 @@ const List<_Promotion> _promotions = [
   _Promotion(
     brand: 'Sadia',
     name: 'Frango Inteiro kg',
-    market: 'Assaí',
+    market: 'Tenda',
     oldPrice: 13.99,
     newPrice: 10.99,
     discountPercent: 21,

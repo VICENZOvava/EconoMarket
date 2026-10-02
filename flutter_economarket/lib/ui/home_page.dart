@@ -183,7 +183,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 12, color: AppColors.textSecondary)),
                 SizedBox(height: 2),
-                Text('Assaí Atacadista',
+                Text('Santana',
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -297,14 +297,14 @@ class _PromoPreview {
 const List<_PromoPreview> _promoPreview = [
   _PromoPreview(
     name: 'Leite Integral 1L',
-    market: 'Carrefour',
+    market: 'Poupe Bem',
     oldPrice: 5.49,
     newPrice: 4.79,
     discountPercent: 13,
   ),
   _PromoPreview(
     name: 'Arroz Branco 5kg',
-    market: 'Extra',
+    market: 'Santana',
     oldPrice: 27.99,
     newPrice: 24.90,
     discountPercent: 11,
